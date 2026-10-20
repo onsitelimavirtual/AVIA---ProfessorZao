@@ -1,0 +1,41 @@
+REPARO DE INSTALAÇÃO PWA — AVIA ProfessorZão
+
+Seu repositório:
+https://github.com/onsitelimavirtual/AVIA---ProfessorZao
+Branch em que o index.html foi localizado: portfoliolimavirtual
+Possível URL pública (confirme nas configurações Pages):
+https://onsitelimavirtual.github.io/AVIA---ProfessorZao/
+
+PROBLEMA IDENTIFICADO
+Os arquivos PWA foram enviados, mas o index.html ainda não inclui manifesto nem registro do service worker.
+
+PASSOS — NO ANDROID OU COMPUTADOR
+1. Abra o repositório acima e baixe somente seu index.html atual.
+2. Extraia este ZIP.
+3. Abra CORRIGIR-INSTALACAO.html no Chrome.
+4. Selecione o index.html baixado no passo 1.
+5. Toque em "Gerar index.html corrigido". Um novo arquivo index.html será baixado.
+6. No GitHub, abra index.html, clique em editar (ícone de lápis).
+   Substitua o conteúdo pelo novo index.html ou use Upload files com
+   opção de substituir index.html na MESMA branch que publica o site.
+   ATENÇÃO: faça backup da versão anterior e não apague os dados do app.
+7. Confirme que manifest.webmanifest, sw.js e os três icon-*.png
+   permanecem na mesma pasta que o index.html. Eles também estão no ZIP.
+8. Faça commit e aguarde a atualização do GitHub Pages.
+9. Abra o site publicado no Chrome de verdade (não no navegador
+   embutido do ChatGPT, WhatsApp ou Instagram).
+10. Toque no botão flutuante "⬇ Instalar aplicativo".
+    Se o Chrome aceitar, aparece a confirmação nativa. Se não aceitar,
+    o aplicativo mostrará a opção Chrome ⋮ > Instalar app /
+    Adicionar à tela inicial e um diagnóstico do PWA.
+
+IMPORTANTE
+- O botão visível não força o navegador a instalar como PWA.
+- Um atalho de tela inicial não é necessariamente uma instalação PWA.
+- O Chrome pode não oferecer instalação se o PWA já está instalado,
+  quando a navegação é privada, quando o site não usa HTTPS,
+  ou quando algum recurso está indisponível.
+- Recursos que dependem de internet continuam precisando dela.
+- O HTML corrigido preserva estudos, licenças, dados e serviços originais.
+- A ferramenta de correção não acessa serviços externos nem envia arquivos.
+- Não altere o nome da pasta/repositório sem ajustar o manifest.

@@ -382,6 +382,22 @@ body.large-text{font-size:18px}body.large-text .card p,body.large-text .micro{fo
 @media(max-width:900px){.journey-strip,.parent-summary{grid-template-columns:1fr 1fr}}@media(max-width:620px){.journey-strip,.parent-summary,.help-grid{grid-template-columns:1fr}.smart-help{left:12px;bottom:12px}.child-mode .smart-help{bottom:82px}}
 
 </style>
+<!-- ProfessorZão: configuração de instalação do aplicativo -->
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ProfessorZão">
+<script id="lima-professor-pwa-registration">
+if ('serviceWorker' in navigator && window.isSecureContext) {
+  window.addEventListener('load',function() {
+    navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(function(err) {
+      console.warn('ProfessorZão PWA: service worker não registrado:',err);
+    });
+  });
+}
+</script>
+
 </head>
 <body>
 <div class="app">
@@ -2290,4 +2306,71 @@ $("#studyTime").onchange=()=>$("#resetTimer").click();
 renderAll();renderSourceRegistry();renderMicroLesson();renderSupportMonitor();renderLab();renderBadges();renderCuriosity();renderDiscoveries();renderSmartDecision();renderEfficiency(20);timerRender();setupOriginalNavLabels();applyChildMode(childMode);applyAccessibilityFromStorage();applyUserMode(userMode);renderResume();renderJourney();renderDailyQuest();renderAdaptive62();renderParentSummary();
 })();
 </script>
+<!-- AVIA / ConcursorIA — Painel de instalação PWA (2026-10-20) -->
+<style id="lima-pwa-install-style">
+.lima-pwa-install-trigger{position:fixed!important;right:14px!important;bottom:calc(88px + env(safe-area-inset-bottom,0px))!important;z-index:2147482500!important;border:1px solid rgba(255,255,255,.22)!important;background:linear-gradient(120deg,#063962,#196fb5)!important;color:white!important;font:700 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif!important;border-radius:999px!important;box-shadow:0 7px 22px rgba(0,0,0,.27)!important;padding:12px 15px!important;cursor:pointer!important;min-width:0!important;min-height:44px!important;max-width:calc(100vw - 24px)!important;white-space:normal!important}
+.lima-pwa-install-trigger:focus-visible,.lima-pwa-install-panel button:focus-visible{outline:3px solid #fdd85a!important;outline-offset:2px!important}
+.lima-pwa-install-panel[hidden],.lima-pwa-install-trigger[hidden]{display:none!important}
+.lima-pwa-install-panel{position:fixed!important;inset:0!important;z-index:2147482600!important;background:rgba(3,14,29,.76)!important;display:grid!important;place-items:center!important;padding:16px!important;overflow:auto!important;box-sizing:border-box!important}
+.lima-pwa-install-dialog{position:relative!important;width:min(440px,100%)!important;max-height:94dvh!important;overflow:auto!important;background:#fff!important;color:#142639!important;border-radius:18px!important;padding:23px!important;box-shadow:0 24px 90px rgba(0,0,0,.4)!important;font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif!important;text-align:left!important;box-sizing:border-box!important}
+.lima-pwa-install-dialog h2{font:700 21px/1.3 system-ui,sans-serif!important;color:#102a43!important;margin:0 40px 12px 0!important}
+.lima-pwa-install-dialog p,.lima-pwa-install-dialog li{color:#334e68!important;font:14px/1.5 system-ui,sans-serif!important}
+.lima-pwa-install-dialog ol{padding-left:23px!important}
+.lima-pwa-install-dialog button{background:#1768a7!important;color:white!important;border:0!important;border-radius:12px!important;padding:11px 18px!important;min-height:42px!important;cursor:pointer!important;font:700 14px system-ui,sans-serif!important}
+.lima-pwa-install-dialog .lima-pwa-close{position:absolute!important;right:14px!important;top:12px!important;min-height:38px!important;padding:8px 13px!important;background:#e7eff7!important;color:#102a43!important}
+.lima-pwa-install-diagnostics{border-top:1px solid #dde8f1!important;margin-top:12px!important;padding-top:12px!important;white-space:pre-line!important;overflow-wrap:anywhere!important;font:12px/1.5 system-ui,sans-serif!important;color:#3b536a!important}
+@media(max-width:480px){.lima-pwa-install-trigger{right:9px!important;bottom:calc(76px + env(safe-area-inset-bottom,0px))!important;padding:11px!important;font-size:12px!important}}
+</style>
+<button id="limaPwaInstallBtn" type="button" class="lima-pwa-install-trigger" aria-haspopup="dialog" aria-controls="limaPwaInstallPanel">⬇ Instalar aplicativo</button>
+<div id="limaPwaInstallPanel" class="lima-pwa-install-panel" role="dialog" aria-modal="true" aria-label="Como instalar o aplicativo" hidden>
+ <div class="lima-pwa-install-dialog">
+  <button type="button" class="lima-pwa-close" id="limaPwaClose" aria-label="Fechar instruções">✕</button>
+  <h2>📲 Instalar aplicativo</h2>
+  <p>Abra este endereço no <strong>Google Chrome</strong> do Android (não no navegador interno de outro aplicativo).</p>
+  <ol><li>Toque nos <strong>três pontos (⋮)</strong> do Chrome.</li><li>Escolha <strong>Instalar app</strong>, quando disponível.</li><li>Se aparecer apenas <strong>Adicionar à tela inicial</strong>, confira se será instalado como aplicativo ou criado como atalho.</li></ol>
+  <p>Se a opção não estiver disponível, confira os diagnósticos abaixo. Não é necessário baixar um APK.</p>
+  <div id="limaPwaDiagnostics" class="lima-pwa-install-diagnostics" aria-live="polite">Verificando configurações de instalação…</div>
+  <button type="button" id="limaPwaRecheck">Verificar novamente</button>
+ </div>
+</div>
+<script id="lima-pwa-install-script">
+(function(){
+ 'use strict';
+ const trigger=document.getElementById('limaPwaInstallBtn');
+ const panel=document.getElementById('limaPwaInstallPanel');
+ const close=document.getElementById('limaPwaClose');
+ const stats=document.getElementById('limaPwaDiagnostics');
+ const recheck=document.getElementById('limaPwaRecheck');
+ let offer=null;
+ const standalone=()=>window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+ if(standalone()) {trigger.hidden=true; return;}
+ window.addEventListener('beforeinstallprompt',function(event){event.preventDefault();offer=event;trigger.hidden=false;});
+ window.addEventListener('appinstalled',function(){trigger.hidden=true;panel.hidden=true;offer=null;});
+ const open=()=>{panel.hidden=false; close.focus(); inspect();};
+ const dismiss=()=>{panel.hidden=true;trigger.focus();};
+ async function inspect(){
+  const lines=[];lines.push('🔒 HTTPS: '+(window.isSecureContext?'OK':'indisponível'));
+  const manifest=document.querySelector('link[rel="manifest"]');
+  lines.push('📄 Manifesto no HTML: '+(manifest?'presente':'AUSENTE'));
+  if(manifest){try{const resp=await fetch(manifest.href,{cache:'no-store'});const body=resp.ok?await resp.json():null;lines.push('📄 Manifesto acessível: '+(body&&body.name&&body.icons?.length?'OK':'FALHA HTTP '+resp.status));}catch(e){lines.push('📄 Manifesto acessível: falha de rede');}}
+  if('serviceWorker' in navigator){
+   try{const sw=await navigator.serviceWorker.getRegistration('./');lines.push('⚙ Serviço offline: '+(sw?(sw.active?'ativo':'registrando'):'não registrado'));}
+   catch(e){lines.push('⚙ Serviço offline: verificação indisponível');}
+  }else lines.push('⚙ Serviço offline: navegador incompatível');
+  lines.push('📱 Solicitação nativa: '+(offer?'disponível':'ainda não oferecida pelo Chrome'));
+  lines.push('🔗 Endereço: '+location.origin+location.pathname);
+  stats.textContent=lines.join('\n');
+ }
+ trigger.addEventListener('click',async function(){
+  if(standalone()){trigger.hidden=true;return;}
+  if(offer){const o=offer;offer=null;try{await o.prompt();await o.userChoice;}catch(e){open();}return;}
+  open();
+ });
+ close.addEventListener('click',dismiss);
+ recheck.addEventListener('click',inspect);
+ panel.addEventListener('click',function(e){if(e.target===panel)dismiss();});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden)dismiss();});
+})();
+</script>
+
 </body></html>
