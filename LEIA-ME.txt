@@ -1,0 +1,33 @@
+AVIA ProfessorZão 6.2 — KIT DE INSTALAÇÃO PWA
+
+REPOSITÓRIO
+https://github.com/onsitelimavirtual/AVIA---ProfessorZao
+Branch original consultada: portfoliolimavirtual
+
+O aplicativo NÃO foi reescrito; preserve seu index.html, conteúdo, imagens e funcionalidades.
+Este pacote acrescenta instalação com ícones e cache offline básico.
+
+INSTRUÇÕES
+1. Extraia o ZIP.
+2. Abra o repositório GitHub e confirme em Settings > Pages qual branch está servindo o site.
+3. No ramo publicado, envie na RAIZ: manifest.webmanifest, sw.js, icon-192.png,
+   icon-512.png e icon-maskable-512.png (sem criar subpasta).
+4. Faça uma alteração mínima no index.html com o trecho do arquivo
+   ALTERACAO-NO-INDEX.html.txt. Não cole os comentários desnecessários.
+   O link de manifest e apple-touch-icon vão antes de </head>;
+   o bloco <script> vai antes de </body>.
+5. Salve (Commit changes), espere a atualização do GitHub Pages e abra
+   a URL efetivamente configurada em Pages.
+6. Chrome Android: menu ⋮ > Instalar app. O comando pode aparecer como
+   'Adicionar à tela inicial' dependendo do navegador e elegibilidade.
+7. Abra o app pelo novo ícone e teste navegação, modo offline e atualização.
+
+CUIDADOS
+- Não altere o URL do Pages ou o branch sem conferir a publicação.
+- O cache é restrito ao escopo /AVIA---ProfessorZao/ do GitHub Pages.
+- O modo offline cobre o HTML e arquivos locais do kit já baixados; mídias
+  externas, recursos online e integrações remotas podem requerer internet.
+- NÃO apague os dados do navegador/app se guarda progresso local.
+- O PWA não é um APK nem implica publicação na Google Play.
+
+Preserve os direitos autorais declarados no aplicativo original.
